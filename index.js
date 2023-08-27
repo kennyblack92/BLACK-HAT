@@ -1,4 +1,4 @@
-const sessionName = "dreaded1";
+const sessionName = "blackhat";
 const donet = "https://github.com/kennyblack92/BLACK-HAT";
 const owner = ["2347039570336"]; // This will send a notification once the bot reconnects
 const {
