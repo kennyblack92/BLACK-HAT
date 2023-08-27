@@ -1,4 +1,4 @@
-# DREADED-BOT
+# BLACK-HAT
 
 ***This bot is created with the help of NodeJS and uses [Baileys](https://github.com/adiwajshing/Baileys)***
 
@@ -19,7 +19,7 @@ You will need an openai API key for AI features to work.
      
 <h2 align="center">   Run Repl and scan QR Code then upload creds.json in dreaded1 folder before deploying.
 </h2>
-<h2 align="center">  <a href="https://replit.com/@fortunedreaded/DREADED-QR-SCANNER#"><img src="https://repl.it/badge/github/quiec/whatsasena" />
+<h2 align="center">  <a href="https://replit.com/@Excelottah/BLACK-HAT-QR-SCANNER"><img src="https://repl.it/badge/github/quiec/whatsasena" />
 </a>
 </h2>
    <br>
@@ -30,8 +30,8 @@ You will need an openai API key for AI features to work.
 </h2>
 
 <p align="center" >
-    <a href="https://heroku.com/deploy?template=https://github.com/Fortunatusmokaya/DREADED-GPT-AI">
-    <img title="DREADED on Heroku" src="https://www.herokucdn.com/deploy/button.png" width="189px" alt="Deploy on Heroku" >
+    <a href="https://heroku.com/deploy?template=https://github.com/kennyblack92/BLACK-HAT">
+    <img title="BLACK-HAT on Heroku" src="https://www.herokucdn.com/deploy/button.png" width="189px" alt="Deploy on Heroku" >
     </a>
 </p>
      
@@ -44,8 +44,8 @@ You will need an openai API key for AI features to work.
 
 ```bash
 $ pkg install git nodejs -y
-$ git clone https://github.com/Fortunatusmokaya/DREADED-GPT-AI
-$ cd DREADED-GPT-AI
+$ git clone https://github.com/kennyblack92/BLACK-HAT
+$ cd BLACK-HAT
 $ npm install
 ```
 
@@ -57,7 +57,7 @@ $ node index.js
 
 
 ## License
-[MIT License](https://github.com/Fortunatusmokaya/DREADED-GPT-AI/blob/main/LICENSE)
+[MIT License](https://github.com/kennyblack92/BLACK-HAT/blob/main/LICENSE)
 
-Copyright (c) 2023 Dreaded AI-ChatGpt
+Copyright (c) 2023 blackhat by EXCEL
 
