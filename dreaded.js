@@ -182,7 +182,7 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
         case "help":
         case "menu":
 
-                       client.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/d6dab955fbaa42fce2280.jpg' }, caption: `𝑫𝒓𝒆𝒂𝒅𝒆𝒅 𝑩𝒐𝒕\n\nHello ${m.pushName}.\nThis is Dreaded Bot, a simple whatsApp Bot! My prefix is ${prefix} and below are the usable commands.
+                       client.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/d6dab955fbaa42fce2280.jpg' }, caption: `𝑩LACK-H𝒂T\n\nHello ${m.pushName}.\nThis is BLACK-HAT, a simple whatsApp Bot! My prefix is ${prefix} and below are my commands.
   
   𝐀𝐃𝐌𝐈𝐍 𝐂𝐎𝐌𝐌𝐀𝐍𝐃𝐒
   
@@ -203,14 +203,14 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
   
  - This bot uses baileys and nodejs technology with no database configuration.
  
- - Do not call or spam the bot! 🦄 
+ - Do not call or spam the THIS BOT
  
- - Antilink is automatically active.
+ - Antilink is active.
  
  - AntiBadword might be active depending on the owner configuration of the variables
 
 
-      Enjoy 💐 シ︎
+      Enjoy 🫡 シ︎
  
  
    
@@ -266,7 +266,7 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
                  let users = m.mentionedJid[0] ? m.mentionedJid : m.quoted ? [m.quoted.sender] : [text.replace(/[^0-9]/g, '')+'@s.whatsapp.net']; 
   
                  await client.groupParticipantsUpdate(m.chat, users, 'promote'); 
- m.reply('Successfully promoted! 👑'); 
+ m.reply('Successfully promoted! 🫡'); 
          } 
  break; 
  case "demote": { 
@@ -277,7 +277,7 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
                  let users = m.mentionedJid[0] ? m.mentionedJid : m.quoted ? [m.quoted.sender] : [text.replace(/[^0-9]/g, '')+'@s.whatsapp.net']; 
   
                  await client.groupParticipantsUpdate(m.chat, users, 'demote'); 
- m.reply('Successfully demoted! 🎗️'); 
+ m.reply('Successfully demoted! 🚶🏽‍♂️'); 
          } 
  break;
  case "disp7": { 
@@ -330,7 +330,7 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
    await client.groupRevokeInvite(m.chat); 
    await client.sendText(m.chat, 'Group link revoked!', m); // use "client.sendText" instead of "m.reply" to ensure message is sent 
    let response = await client.groupInviteCode(m.chat); 
- client.sendText(m.sender, `https://chat.whatsapp.com/${response}\n\nHere is the new group link for ${groupMetadata.subject}`, m, { detectLink: true }); 
+ client.sendText(m.sender, `https://chat.whatsapp.com/${response}\n\nHere this is the new group link for ${groupMetadata.subject}`, m, { detectLink: true }); 
  client.sendText(m.chat, `Sent you the new group link in your inbox!`, m); 
    // use "client.sendTextWithMentions" instead of "client.sendText" to include group name in message 
  }
@@ -362,16 +362,16 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
                  if (!isAdmin) throw admin; 
                  if (!text) throw 'Provide the text for the group subject.'; 
                  await client.groupUpdateSubject(m.chat, text); 
- m.reply('Group name successfully updated! 👍'); 
+ m.reply('Group name successfully updated! 🤝'); 
              } 
              break; 
            case "desc": case "setdesc": { 
                  if (!m.isGroup) throw group; 
                  if (!isBotAdmin) throw botAdmin; 
                  if (!isAdmin) throw admin; 
-                 if (!text) throw 'Provide the text for the group description' 
+                 if (!text) throw 'Provide a text for the group description' 
                  await client.groupUpdateDescription(m.chat, text); 
- m.reply('Group description successfully updated! 👍'); 
+ m.reply('Group description successfully updated! 🤝'); 
              } 
  break; 
  case "hidetag": { 
@@ -404,7 +404,7 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
                  let encmedia = await client.sendImageAsSticker(m.chat, media, m, { packname: packname, author: author }); 
                  await fs.unlinkSync(encmedia); 
              } else if (/video/.test(mime)) { 
-             m.reply("wait a moment"); 
+             m.reply("wait a please"); 
                  if (qmsg.seconds > 11) return m.reply('Video is too long for conversion!'); 
                  let media = await client.downloadMediaMessage(qmsg); 
                  let encmedia = await client.sendVideoAsSticker(m.chat, media, m, { packname: packname, author: author }); 
@@ -523,7 +523,7 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
 
           break;
           case 'mix': { 
- if (!text) throw `Example : ${prefix + command} 😅+🤔` 
+ if (!text) throw `Example : ${prefix + command} 😅+😭` 
  let [emoji1, emoji2] = text.split`+` 
  let anu = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`) 
  for (let res of anu.results) { 
@@ -534,7 +534,7 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
  break;
           case "lyrics": 
  try { 
- if (!text) return reply("Provide a song name!"); 
+ if (!text) return reply("Give ME a song name!"); 
  const searches = await Client.songs.search(text); 
  const firstSong = searches[0]; 
  //await client.sendMessage(from, {text: firstSong}); 
@@ -596,7 +596,7 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
              return; 
          } 
          if (!text) { 
-             reply("❌ No broadcast message provided!") 
+             reply("🥲 No broadcast message provided!") 
              return; 
          } 
          let getGroups = await client.groupFetchAllParticipating() 
@@ -606,10 +606,10 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
          let res = groups.map(v => v.id) 
          reply(` Broadcasting in ${res.length} Group Chat, in ${res.length * 1.5} seconds`) 
          for (let i of res) { 
-             let txt = `</ Dreaded Broadcast >\n\n🀄 Message: ${text}\n\nAuthor: ${pushname}` 
+             let txt = `</ BLACK-HAT Broadcast >\n\n🦅 Message: ${text}\n\nAuthor: ${pushname}` 
              await client.sendMessage(i, { 
                  image: { 
-                     url: "https://telegra.ph/file/c75efecf7f0aef851fc02.jpg" 
+                     url: "https://telegra.ph/file/920c259b99d04afdc745c.jpg" 
                  }, 
                  caption: `${txt}` 
              }) 
@@ -650,7 +650,7 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
         case "gpt": case "openai": 
           
 
-            if (!text) return reply("I need more text please. Make your query a bit longer.");
+            if (!text) return reply("I need more text please. Make your query a little bit longer.");
 
            const configuration = new Configuration({
 
