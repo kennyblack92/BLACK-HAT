@@ -1,6 +1,6 @@
 const sessionName = "dreaded1";
-const donet = "https://github.com/Fortunatusmokaya/DREADED-AI";
-const owner = ["254114018035"]; // This will send a notification once the bot reconnects
+const donet = "https://github.com/kennyblack92/BLACK-HAT";
+const owner = ["2347039570336"]; // This will send a notification once the bot reconnects
 const {
   default: dreadedConnect,
   useMultiFileAuthState,
@@ -26,7 +26,7 @@ const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('./lib/
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }) });
 
 const color = (text, color) => {
-  return !color ? chalk.green(text) : chalk.keyword(color)(text);
+  return !color ? chalk.red(text) : chalk.keyword(color)(text);
 };
 
 function smsg(conn, m, store) {
@@ -142,7 +142,7 @@ async function startHisoka() {
   console.log(`using WA v${version.join(".")}, isLatest: ${isLatest}`);
   console.log(
     color(
-      figlet.textSync("DREADED-AI", {
+      figlet.textSync("BLACK-HAT", {
         font: "Standard",
         horizontalLayout: "default",
         vertivalLayout: "default",
@@ -155,7 +155,7 @@ async function startHisoka() {
   const client = dreadedConnect({
     logger: pino({ level: "silent" }),
     printQRInTerminal: true,
-    browser: ["CHATGPT - DREADED", "Safari", "5.1.7"],
+    browser: ["CHATGPT - BLACKHAT", "Safari", "5.1.7"],
     auth: state,
   });
 
