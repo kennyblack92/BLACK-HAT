@@ -1,6 +1,6 @@
 {
-  "name": "DREADED BOT",
-  "description": "This is a simple whatsapp bot built with nodejs and baileys with MD support.",
+  "name": "BLACK-HAT",
+  "description": " whatsapp bot built with nodejs and baileys with MD support.",
   "keywords": [
     "bot",
     "whatsapp",
@@ -14,13 +14,13 @@
     "baileys-md",
     "md-bot"
   ],
-  "website": "https://github.com/Fortunatusmokaya/DREADED-GPT-AI#readme",
-  "repository": "https://github.com/Fortunatusmokaya/DREADED-GPT-AI.git",
+  "website": "https://github.com/kennyblack92/BLACK-HAT#readme",
+  "repository": "https://github.com/Fortunatusmokaya/BLACK-HAT.git",
   "logo": "https://telegra.ph/file/d6dab955fbaa42fce2280.jpg",
   "success_url": "/",
   "env": {
     "PREFIX": {
-      "description": "Prefix of dreaded bot Ex: . , / , # , & etc. Put any symbol",
+      "description": "Prefix of BLACKHAT Ex: . , / , # , & etc. Put any symbol",
       "required": true
 
     },
