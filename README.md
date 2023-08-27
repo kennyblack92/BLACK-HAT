@@ -1,4 +1,8 @@
-#                                   BLACK-HAT
+<p align="center">
+  <img src="https://i.imgur.com/4ZY2h0L.png" alt="BLACK-HAT Image">
+</p>
+
+<h1 align="center">BLACK-HAT</h1>
 
 ***This bot is created with the help of NodeJS and uses [Baileys](https://github.com/adiwajshing/Baileys)***
 
@@ -38,6 +42,10 @@ You will need an OpenAI API key for AI features to work.
     Tap here to join my WhatsApp group
   </a>
 </p>
+<p align="center">
+    <img align="left" alt="SIEGRIN | Gmail" width="26px" src="https://raw.githubusercontent.com/PikaBotz/My_Personal_Space/main/Images/AnyaBot_pics/Anya_v2/Gmail.svg" />
+</p>
+
 
 **Install Via Termux ✅**
 
