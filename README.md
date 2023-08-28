@@ -4,7 +4,7 @@
 
 <h1 align="center">BLACK-HAT</h1>
 
-***This bot is created with the help of NodeJS and uses [Baileys](https://github.com/adiwajshing/Baileys)***
+***This bot is created with the help of Fortunatusmokaya,Node.js and uses [Baileys](https://github.com/adiwajshing/Baileys)***
 
 ## FEATURES
 This is a highly customizable simple WhatsApp bot with group management features and a few media commands and chatgpt courtesy of OpenAI APIs.
