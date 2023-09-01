@@ -1,9 +1,13 @@
+
 const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType } = require("@adiwajshing/baileys");
 const fs = require("fs");
 const util = require("util");
 global.axios = require('axios').default
 const chalk = require("chalk");
+const speed = require("performance-now");
 const Genius = require("genius-lyrics"); 
+const yts = require("yt-search");
+const ytdl = require("ytdl-secktor");
  const Client = new Genius.Client("jKTbbU-6X2B9yWWl-KOm7Mh3_Z6hQsgE4mmvwV3P3Qe7oNa9-hsrLxQV5l5FiAZO"); // Scrapes if no key is provided
 const { fetchUrl, isUrl, processTime } = require("./lib/dreadfunc");
 const { Configuration, OpenAIApi } = require("openai");
@@ -83,6 +87,23 @@ const admin = process.env.ADMIN_MSG;
     const group = process.env.GROUP_ONLY_MSG;
     const botAdmin = process.env.BOT_ADMIN_MSG;
     const NotOwner = process.env.NOT_OWNER_MSG;
+
+const runtime = function (seconds) { 
+ seconds = Number(seconds); 
+ var d = Math.floor(seconds / (3600 * 24)); 
+ var h = Math.floor((seconds % (3600 * 24)) / 3600); 
+ var m = Math.floor((seconds % 3600) / 60); 
+ var s = Math.floor(seconds % 60); 
+ var dDisplay = d > 0 ? d + (d == 1 ? " day, " : " Day, ") : ""; 
+ var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " Hours, ") : ""; 
+ var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " Minutes, ") : ""; 
+ var sDisplay = s > 0 ? s + (s == 1 ? " second" : " Seconds") : ""; 
+ return dDisplay + hDisplay + mDisplay + sDisplay; 
+ } 
+  
+ const timestamp = speed(); 
+   const dreadedspeed = speed() - timestamp 
+ 
     // Push Message To Console
     let argsLog = budy.length > 30 ? `${q.substring(0, 30)}...` : budy;
     if (autoreadrecord === 'TRUE' && !m.isGroup) { 
@@ -182,7 +203,7 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
         case "help":
         case "menu":
 
-                       client.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/d6dab955fbaa42fce2280.jpg' }, caption: `𝑩LACK-H𝒂T\n\nHello ${m.pushName}.\nThis is BLACK-HAT, a simple whatsApp Bot! My prefix is ${prefix} and below are my commands.
+                       client.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/d6dab955fbaa42fce2280.jpg' }, caption: `𝑫𝒓𝒆𝒂𝒅𝒆𝒅 𝑩𝒐𝒕\n\nHello ${m.pushName}.\nThis is Dreaded Bot, a simple whatsApp Bot! My prefix is ${prefix} and below are the usable commands.
   
   𝐀𝐃𝐌𝐈𝐍 𝐂𝐎𝐌𝐌𝐀𝐍𝐃𝐒
   
@@ -190,7 +211,7 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
 
   𝐆𝐄𝐍𝐄𝐑𝐀𝐋 𝐂𝐎𝐌𝐌𝐀𝐍𝐃𝐒
   
-  sticker, toimg, song, lyrics,  mix, script, owner, dp, gpt, ai-img
+  sticker, toimg, song, play, yts, ytmp3, ytmp4, lyrics,  mix, script, owner, dp, runtime, speed, alive, gpt, ai-img, credits
 
   𝐎𝐖𝐍𝐄𝐑 𝐂𝐎𝐌𝐌𝐀𝐍𝐃𝐒
   
@@ -203,14 +224,14 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
   
  - This bot uses baileys and nodejs technology with no database configuration.
  
- - Do not call or spam the THIS BOT
+ - Do not call or spam the bot! 🦄 
  
- - Antilink is active.
+ - Antilink is automatically active.
  
  - AntiBadword might be active depending on the owner configuration of the variables
 
 
-      Enjoy 🫡 シ︎
+      Enjoy 💐 シ︎
  
  
    
@@ -228,6 +249,25 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
  m.reply('Promoted To Admin<🥇'); 
           }
           break;
+
+case "remove": case "kick": { 
+  
+                 if (!m.isGroup) throw group; 
+  if (!isBotAdmin) throw botAdmin; 
+  if (!isAdmin) throw admin; 
+  
+  
+  
+                 let users = m.mentionedJid[0] ? m.mentionedJid : m.quoted ? [m.quoted.sender] : [text.replace(/[^0-9]/g, '')+'@s.whatsapp.net']; 
+ if (!users) throw NotOwner; 
+ if (users  == client.decodeJid(client.user.id)) throw 'Bot cannot remove itself 😡';
+ if (users == Owner) { m.reply('Its owner number')}; 
+                 await client.groupParticipantsUpdate(m.chat, users, 'remove'); 
+     m.reply('Successfully removed!'); 
+         } 
+  
+  break;
+ 
  case "close": case "mute": { 
   
                  if (!m.isGroup) throw group; 
@@ -266,7 +306,7 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
                  let users = m.mentionedJid[0] ? m.mentionedJid : m.quoted ? [m.quoted.sender] : [text.replace(/[^0-9]/g, '')+'@s.whatsapp.net']; 
   
                  await client.groupParticipantsUpdate(m.chat, users, 'promote'); 
- m.reply('Successfully promoted! 🫡'); 
+ m.reply('Successfully promoted! 👑'); 
          } 
  break; 
  case "demote": { 
@@ -277,7 +317,7 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
                  let users = m.mentionedJid[0] ? m.mentionedJid : m.quoted ? [m.quoted.sender] : [text.replace(/[^0-9]/g, '')+'@s.whatsapp.net']; 
   
                  await client.groupParticipantsUpdate(m.chat, users, 'demote'); 
- m.reply('Successfully demoted! 🚶🏽‍♂️'); 
+ m.reply('Successfully demoted! 🎗️'); 
          } 
  break;
  case "disp7": { 
@@ -330,7 +370,7 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
    await client.groupRevokeInvite(m.chat); 
    await client.sendText(m.chat, 'Group link revoked!', m); // use "client.sendText" instead of "m.reply" to ensure message is sent 
    let response = await client.groupInviteCode(m.chat); 
- client.sendText(m.sender, `https://chat.whatsapp.com/${response}\n\nHere this is the new group link for ${groupMetadata.subject}`, m, { detectLink: true }); 
+ client.sendText(m.sender, `https://chat.whatsapp.com/${response}\n\nHere is the new group link for ${groupMetadata.subject}`, m, { detectLink: true }); 
  client.sendText(m.chat, `Sent you the new group link in your inbox!`, m); 
    // use "client.sendTextWithMentions" instead of "client.sendText" to include group name in message 
  }
@@ -362,16 +402,16 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
                  if (!isAdmin) throw admin; 
                  if (!text) throw 'Provide the text for the group subject.'; 
                  await client.groupUpdateSubject(m.chat, text); 
- m.reply('Group name successfully updated! 🤝'); 
+ m.reply('Group name successfully updated! 👍'); 
              } 
              break; 
            case "desc": case "setdesc": { 
                  if (!m.isGroup) throw group; 
                  if (!isBotAdmin) throw botAdmin; 
                  if (!isAdmin) throw admin; 
-                 if (!text) throw 'Provide a text for the group description' 
+                 if (!text) throw 'Provide the text for the group description' 
                  await client.groupUpdateDescription(m.chat, text); 
- m.reply('Group description successfully updated! 🤝'); 
+ m.reply('Group description successfully updated! 👍'); 
              } 
  break; 
  case "hidetag": { 
@@ -404,7 +444,7 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
                  let encmedia = await client.sendImageAsSticker(m.chat, media, m, { packname: packname, author: author }); 
                  await fs.unlinkSync(encmedia); 
              } else if (/video/.test(mime)) { 
-             m.reply("wait a please"); 
+             m.reply("wait a moment"); 
                  if (qmsg.seconds > 11) return m.reply('Video is too long for conversion!'); 
                  let media = await client.downloadMediaMessage(qmsg); 
                  let encmedia = await client.sendVideoAsSticker(m.chat, media, m, { packname: packname, author: author }); 
@@ -427,6 +467,12 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
  client.sendMessage(m.chat, { image: { url: pp2}, caption: bar, fileLength: "999999999999"}, { quoted: m}); 
  } 
  break;
+
+case "credits": 
+  
+              client.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/c75efecf7f0aef851fc02.jpg' }, caption: `𝑪𝑹𝑬𝑫𝑰𝑻𝑺\n\n -Dika Ardnt ➪ Indonesia\n - Writing the base code using case method\nhttps://github.com/DikaArdnt\n\n -Adiwajshing ➪ India\n - Writing and Coding the bot's library (baileys)\nhttps://github.com/WhiskeySockets/Baileys\n\n -WAWebSockets Discord Server community\n-Maintaining and reverse engineering the Web Sockets\nhttps://discord.gg/WeJM5FP9GG\n\n𝐷𝑟𝑒𝑎𝑑𝑒𝑑 𝐵𝑜𝑡 シ︎`}); 
+ break; 
+ 
           case "song": { 
  const getRandom = (ext) => { 
    return `${Math.floor(Math.random() * 10000)}${ext}`; 
@@ -520,10 +566,296 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
    fs.unlinkSync(`./${randomName}`); 
     } 
   
+break
+  case 'play':
+    case 'stream': {
+        if (!text) {
+            reply('Provide a search term!\nE.g: play Alan walker alone')
+            return;
+        }
+        try {
+            const {
+                videos
+            } = await yts(text);
+            if (!videos || videos.length <= 0) {
+                reply(`No Matching videos found for : *${args[0]}*!!`)
+                return;
+            }
+            let urlYt = videos[0].url
+            let infoYt = await ytdl.getInfo(urlYt);
+            //30 MIN
+            if (infoYt.videoDetails.lengthSeconds >= 1800) {
+                reply(`Too big!\I'm Unable to download big files. 🤥`);
+                return;
+            }
+            const getRandom = (ext) => {
+                return `${Math.floor(Math.random() * 10000)}${ext}`;
+            };
+            let titleYt = infoYt.videoDetails.title;
+            let randomName = getRandom(".mp3");
+            const stream = ytdl(urlYt, {
+                    filter: (info) => info.audioBitrate == 160 || info.audioBitrate == 128,
+                })
+                .pipe(fs.createWriteStream(`./${randomName}`));
+            console.log("Audio downloading ->", urlYt);
+            // reply("Downloading.. This may take upto 5 min!");
+            await new Promise((resolve, reject) => {
+                stream.on("error", reject);
+                stream.on("finish", resolve);
+            });
+            
+            let stats = fs.statSync(`./${randomName}`);
+            let fileSizeInBytes = stats.size;
+            // Convert the file size to megabytes (optional)
+            let fileSizeInMegabytes = fileSizeInBytes / (1024 * 1024);
+            console.log("Audio downloaded ! \n Size: " + fileSizeInMegabytes);
+            if (fileSizeInMegabytes <= 40) {
+                //sendFile(from, fs.readFileSync(`./${randomName}`), msg, { audio: true, jpegThumbnail: (await getBuffer(dl.meta.image)).buffer, unlink: true })
+                await client.sendMessage(
+                    from, {
+                        document: fs.readFileSync(`./${randomName}`),
+                        mimetype: "audio/mpeg",
+                        fileName: titleYt + ".mp3",
+                    }, {
+                        quoted: m
+                    }
+                );
+            } else {
+                reply(`File size bigger.`);
+            }
+            fs.unlinkSync(`./${randomName}`);
+        } catch (e) {
+            reply(e.toString())
+        }
+    }
+break;
+
+case 'ytsearch':
+    case 'yts': {
+        if (!text) {
+            reply('Provide a search term!\E.g: Alan walker alone')
+            return;
+        }
+        const term = text;
+        const {
+            videos
+        } = await yts(term);
+        if (!videos || videos.length <= 0) {
+            reply(`No Matching videos found for : *${term}*!!`)
+            return;
+        }
+        const length = videos.length < 10 ? videos.length : 10;
+        let tex = `YouTube Search\n🔍 Query ~> ${term}\n\n`;
+        for (let i = 0; i < length; i++) {
+            tex += `Link ~> ${videos[i].url}\nChannel ~> ${videos[i].author.name}\nTitle ~> ${videos[i].title}\n\n`;
+        }
+        reply(tex)
+        return;
+    }
+    break;
+
+case 'ytmp3':
+case 'yta': {
+        const getRandom = (ext) => {
+            return `${Math.floor(Math.random() * 10000)}${ext}`;
+        };
+        if (args.length === 0) {
+            reply(`URL is empty! \nSend ${prefix}ytmp3 url`);
+            return;
+        }
+        try {
+            let urlYt = args[0];
+            if (!urlYt.startsWith("http")) {
+                reply(`Youtube link?`);
+                return;
+            }
+            let infoYt = await ytdl.getInfo(urlYt);
+            //30 MIN
+            if (infoYt.videoDetails.lengthSeconds >= 1800) {
+                reply(`Video too big!`);
+                return;
+            }
+            let titleYt = infoYt.videoDetails.title;
+            let randomName = getRandom(".mp3");
+            const stream = ytdl(urlYt, {
+                    filter: (info) => info.audioBitrate == 160 || info.audioBitrate == 128,
+                })
+                .pipe(fs.createWriteStream(`./${randomName}`));
+            console.log("Audio downloading ->", urlYt);
+            // reply("Downloading.. This may take upto 5 min!");
+            await new Promise((resolve, reject) => {
+                stream.on("error", reject);
+                stream.on("finish", resolve);
+            });
+            
+            let stats = fs.statSync(`./${randomName}`);
+            let fileSizeInBytes = stats.size;
+            // Convert the file size to megabytes (optional)
+            let fileSizeInMegabytes = fileSizeInBytes / (1024 * 1024);
+            console.log("Audio downloaded ! Size: " + fileSizeInMegabytes);
+            if (fileSizeInMegabytes <= 40) {
+                //sendFile(from, fs.readFileSync(`./${randomName}`), msg, { audio: true, jpegThumbnail: (await getBuffer(dl.meta.image)).buffer, unlink: true })
+                await client.sendMessage(
+                    from, {
+                        document: fs.readFileSync(`./${randomName}`),
+                        mimetype: "audio/mpeg",
+                        fileName: titleYt + ".mp3",
+                    }, {
+                        quoted: m
+                    }
+                );
+            } else {
+                reply(`File size bigger than 40mb.`);
+            }
+            fs.unlinkSync(`./${randomName}`);
+        } catch (e) {
+            reply(e.toString())
+        }
+    }
+
+break  
+case 'ytmp4':
+case 'ytvideo':
+case 'ytv':
+        const getRandom = (ext) => {
+            return `${Math.floor(Math.random() * 10000)}${ext}`;
+        };
+        if (args.length === 0) {
+            reply(` URL is empty! \nSend ${prefix}ytmp4 url`);
+            return;
+        }
+        try {
+            let urlYt = args[0];
+            if (!urlYt.startsWith("http")) {
+                reply(`Give youtube link!`);
+                return;
+            }
+            let infoYt = await ytdl.getInfo(urlYt);
+            //30 MIN
+            if (infoYt.videoDetails.lengthSeconds >= 1800) {
+                reply(`Video file too big!`);
+                return;
+            }
+            let titleYt = infoYt.videoDetails.title;
+            let randomName = getRandom(".mp4");
+            
+            const stream = ytdl(urlYt, {
+                    filter: (info) => info.itag == 22 || info.itag == 18,
+                })
+                .pipe(fs.createWriteStream(`./${randomName}`));
+            //22 - 1080p/720p and 18 - 360p
+            console.log("Video downloading ->", urlYt);
+            // reply("Downloading.. This may take upto 5 min!");
+            await new Promise((resolve, reject) => {
+                stream.on("error", reject);
+                stream.on("finish", resolve);
+            });
+            
+            let stats = fs.statSync(`./${randomName}`);
+            let fileSizeInBytes = stats.size;
+            // Convert the file size to megabytes (optional)
+            let fileSizeInMegabytes = fileSizeInBytes / (1024 * 1024);
+            console.log("Video downloaded ! Size: " + fileSizeInMegabytes);
+            if (fileSizeInMegabytes <= 100) {
+                client.sendMessage(
+                    from, {
+                        video: fs.readFileSync(`./${randomName}`),
+                        caption: `${titleYt}`,
+                    }, {
+                        quoted: m
+                    }
+                );
+            } else {
+                reply(`File size big.`);
+            }
+            
+            fs.unlinkSync(`./${randomName}`);
+        } catch (e) {
+            reply(e.toString())
+        }
+break;
+          
+  case 'video': {
+        if (!text) {
+            reply('Provide a search term!')
+            return;
+        }
+        try {
+            const {
+                videos
+            } = await yts(text);
+            if (!videos || videos.length <= 0) {
+                reply(`No Matching videos found!`)
+                return;
+            }
+            let urlYt = videos[0].url
+            let infoYt = await ytdl.getInfo(urlYt);
+            //30 MIN
+            if (infoYt.videoDetails.lengthSeconds >= 1800) {
+                reply(`Too big!\I'm Unable to download big files.`);
+                return;
+            }
+            const getRandom = (ext) => {
+                return `${Math.floor(Math.random() * 10000)}${ext}`;
+            };
+            let titleYt = infoYt.videoDetails.title;
+            let randomName = getRandom(".mp3");
+            const stream = ytdl(urlYt, {
+                    filter: (info) => info.audioBitrate == 160 || info.audioBitrate == 128,
+                })
+                .pipe(fs.createWriteStream(`./${randomName}`));
+            console.log("Audio downloading ->", urlYt);
+            // reply("Downloading.. This may take upto 5 min!");
+            await new Promise((resolve, reject) => {
+                stream.on("error", reject);
+                stream.on("finish", resolve);
+            });
+            
+            let stats = fs.statSync(`./${randomName}`);
+            let fileSizeInBytes = stats.size;
+            // Convert the file size to megabytes (optional)
+            let fileSizeInMegabytes = fileSizeInBytes / (1024 * 1024);
+            console.log("Audio downloaded ! \n Size: " + fileSizeInMegabytes);
+            if (fileSizeInMegabytes <= 40) {
+                //sendFile(from, fs.readFileSync(`./${randomName}`), msg, { audio: true, jpegThumbnail: (await getBuffer(dl.meta.image)).buffer, unlink: true })
+                await client.sendMessage(
+                    from, {
+                        video: fs.readFileSync(`./${randomName}`),
+                        
+                        caption: `${titleYt}`,
+                    }, {
+                        quoted: m
+                    }
+                );
+            } else {
+                reply(`File size bigger.`);
+            }
+            fs.unlinkSync(`./${randomName}`);
+        } catch (e) {
+            reply(e.toString())
+        }
+    }
+
 
           break;
+
+case "ping": case "speed": { 
+         m.reply (`${dreadedspeed.toFixed(4)} milliseconds`); 
+         } 
+ break; 
+  
+ case "runtime": { 
+                 m.reply (`Bot active for ${runtime(process.uptime())}`) 
+ } 
+ break;
+
+case "alive": { 
+  
+ client.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/d6dab955fbaa42fce2280.jpg' }, caption: `Hello ${m.pushName}, Dreaded is active\n\nActive for:  ${runtime(process.uptime())}\n\nType ${prefix}help.`, fileLength: "9999999999898989899999999" }, { quoted: m }); 
+ }
+break;
           case 'mix': { 
- if (!text) throw `Example : ${prefix + command} 😅+😭` 
+ if (!text) throw `Example : ${prefix + command} 😅+🤔` 
  let [emoji1, emoji2] = text.split`+` 
  let anu = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`) 
  for (let res of anu.results) { 
@@ -534,7 +866,7 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
  break;
           case "lyrics": 
  try { 
- if (!text) return reply("Give ME a song name!"); 
+ if (!text) return reply("Provide a song name!"); 
  const searches = await Client.songs.search(text); 
  const firstSong = searches[0]; 
  //await client.sendMessage(from, {text: firstSong}); 
@@ -596,7 +928,7 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
              return; 
          } 
          if (!text) { 
-             reply("🥲 No broadcast message provided!") 
+             reply("❌ No broadcast message provided!") 
              return; 
          } 
          let getGroups = await client.groupFetchAllParticipating() 
@@ -606,10 +938,10 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
          let res = groups.map(v => v.id) 
          reply(` Broadcasting in ${res.length} Group Chat, in ${res.length * 1.5} seconds`) 
          for (let i of res) { 
-             let txt = `</ BLACK-HAT Broadcast >\n\n🦅 Message: ${text}\n\nAuthor: ${pushname}` 
+             let txt = `</ Dreaded Broadcast >\n\n🀄 Message: ${text}\n\nAuthor: ${pushname}` 
              await client.sendMessage(i, { 
                  image: { 
-                     url: "https://telegra.ph/file/920c259b99d04afdc745c.jpg" 
+                     url: "https://telegra.ph/file/c75efecf7f0aef851fc02.jpg" 
                  }, 
                  caption: `${txt}` 
              }) 
@@ -650,7 +982,7 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
         case "gpt": case "openai": 
           
 
-            if (!text) return reply("I need more text please. Make your query a little bit longer.");
+            if (!text) return reply("I need more text please. Make your query a bit longer.");
 
            const configuration = new Configuration({
 
